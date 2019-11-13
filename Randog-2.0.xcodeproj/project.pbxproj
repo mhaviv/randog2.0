@@ -14,6 +14,7 @@
 		CCC322FF237B738F00A48791 /* Randog_2_0.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CCC322FD237B738F00A48791 /* Randog_2_0.xcdatamodeld */; };
 		CCC32301237B739100A48791 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCC32300237B739100A48791 /* Assets.xcassets */; };
 		CCC32304237B739100A48791 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CCC32302237B739100A48791 /* LaunchScreen.storyboard */; };
+		CCC3230F237B752A00A48791 /* DogAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC3230E237B752A00A48791 /* DogAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		CCC32300237B739100A48791 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CCC32303237B739100A48791 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CCC32305237B739100A48791 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CCC3230E237B752A00A48791 /* DogAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,14 +62,39 @@
 			children = (
 				CCC322F4237B738F00A48791 /* AppDelegate.swift */,
 				CCC322F6237B738F00A48791 /* SceneDelegate.swift */,
-				CCC322F8237B738F00A48791 /* ViewController.swift */,
-				CCC322FA237B738F00A48791 /* Main.storyboard */,
-				CCC32300237B739100A48791 /* Assets.xcassets */,
-				CCC32302237B739100A48791 /* LaunchScreen.storyboard */,
+				CCC3230C237B74E500A48791 /* Model */,
+				CCC3230D237B74EB00A48791 /* Controller */,
+				CCC3230B237B73CB00A48791 /* View */,
 				CCC32305237B739100A48791 /* Info.plist */,
 				CCC322FD237B738F00A48791 /* Randog_2_0.xcdatamodeld */,
 			);
 			path = "Randog-2.0";
+			sourceTree = "<group>";
+		};
+		CCC3230B237B73CB00A48791 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CCC322FA237B738F00A48791 /* Main.storyboard */,
+				CCC32300237B739100A48791 /* Assets.xcassets */,
+				CCC32302237B739100A48791 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CCC3230C237B74E500A48791 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CCC3230E237B752A00A48791 /* DogAPI.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CCC3230D237B74EB00A48791 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CCC322F8237B738F00A48791 /* ViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,6 +168,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCC3230F237B752A00A48791 /* DogAPI.swift in Sources */,
 				CCC322F9237B738F00A48791 /* ViewController.swift in Sources */,
 				CCC322F5237B738F00A48791 /* AppDelegate.swift in Sources */,
 				CCC322FF237B738F00A48791 /* Randog_2_0.xcdatamodeld in Sources */,
