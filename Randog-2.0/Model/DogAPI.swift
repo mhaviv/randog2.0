@@ -27,7 +27,7 @@ class DogAPI {
                 return "https://dog.ceo/api/breed/\(breed)/images/random"
             case .listAllBreeds:
                 return "https://dog.ceo/api/breeds/list/all"
-        }
+            }
         }
         
     }
@@ -48,46 +48,48 @@ class DogAPI {
             task.resume()
             
         }
-    
-    // Because completionHandler will be called after function finishes executing, we call @escaping
-    class func requestRandomImage(breed: String, completionHandler: @escaping (DogImage?, Error?) -> Void) {
-        // Start with URL to fetch a random image
-        let randomImageEndpoint = DogAPI.Endpoint.randomImageForBreed(breed).url
         
-        // Fetch the json response containg the image's URL
-        let task = URLSession.shared.dataTask(with: randomImageEndpoint) { (data, response, error) in
-            guard let data = data else {
-                completionHandler(nil, error)
-                return
+        // Because completionHandler will be called after function finishes executing, we call @escaping
+        class func requestRandomImage(breed: String, completionHandler: @escaping (DogImage?, Error?) -> Void) {
+            // Start with URL to fetch a random image
+            let randomImageEndpoint = DogAPI.Endpoint.randomImageForBreed(breed).url
+            
+            // Fetch the json response containg the image's URL
+            let task = URLSession.shared.dataTask(with: randomImageEndpoint) { (data, response, error) in
+                guard let data = data else {
+                    completionHandler(nil, error)
+                    return
+                }
+                
+                // Parse the json using JSONDecoder
+                let decoder = JSONDecoder()
+                let imageData = try! decoder.decode(DogImage.self, from: data)
+                print(imageData)
+                completionHandler(imageData, nil)
+                
             }
-            
-            // Parse the json using JSONDecoder
-            let decoder = JSONDecoder()
-            let imageData = try! decoder.decode(DogImage.self, from: data)
-            print(imageData)
-            completionHandler(imageData, nil)
-            
-        }
-        task.resume()
-    }
-    
-    // Don't need instance of DogAPI class to use it (so mark it as class)
-    // UIImage/Error are optional because if there is image then error is nil if not UIImage is nil
-    class func requestImageFile(url: URL, completionHandler: @escaping (UIImage?, Error?) -> Void) {
-        let task = URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
-        guard let data = data else {
-            completionHandler(nil, error)
-            return
+            task.resume()
         }
         
-        // Load the image to the image view
-        let downloadedImage = UIImage(data: data)
-        completionHandler(downloadedImage, nil)
-        })
-        task.resume()
-    }
-    
+        // Don't need instance of DogAPI class to use it (so mark it as class)
+        // UIImage/Error are optional because if there is image then error is nil if not UIImage is nil
+        class func requestImageFile(url: URL, completionHandler: @escaping (UIImage?, Error?) -> Void) {
+            let task = URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+                guard let data = data else {
+                    completionHandler(nil, error)
+                    return
+                }
+                
+                // Load the image to the image view
+                let downloadedImage = UIImage(data: data)
+                completionHandler(downloadedImage, nil)
+            })
+            task.resume()
+        }
+        
         
     }
+        
+    
     
 
