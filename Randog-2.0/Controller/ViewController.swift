@@ -14,13 +14,15 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var pickerView: UIPickerView!
     
-    let breeds: [String] = ["greyhound", "poodle"]
+    var breeds: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         pickerView.dataSource = self
         pickerView.delegate = self
+        
+        DogAPI.requestBreedsList(completionHandler: handleBreedsListResponse(breeds:error:))
 
     }
     
@@ -34,6 +36,13 @@ class ViewController: UIViewController {
         //  We can only update UI on the main thread
         DispatchQueue.main.async {
             self.imageView.image = image
+        }
+    }
+    
+    func handleBreedsListResponse(breeds: [String], error: Error?) {
+        self.breeds = breeds
+        DispatchQueue.main.async {
+            self.pickerView.reloadAllComponents()
         }
     }
 
@@ -59,7 +68,7 @@ extension ViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     
     // When the pickerView stops spinning and a breed is selected we want it to call requesRandom Image to fetch an image
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        DogAPI.requestRandomImage(completionHandler: handleRandomImageResponse(imageData:error:))
+        DogAPI.requestRandomImage(breed: breeds[row], completionHandler: handleRandomImageResponse(imageData:error:))
     }
     
 }
