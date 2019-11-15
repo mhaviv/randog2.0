@@ -43,7 +43,12 @@ class DogAPI {
                 let decoder = JSONDecoder()
                 let breedsResponse = try! decoder.decode(BreedsListResponse.self, from: data)
                 let breeds = breedsResponse.message.keys.map({$0})
-                let sortedBreeds = breeds.sorted()
+                var capitalBreeds = [String]()
+                for breed in breeds {
+                    let Breed = breed.capitalized
+                    capitalBreeds.append(Breed)
+                }
+                let sortedBreeds = capitalBreeds.sorted()
                 completionHandler(sortedBreeds, nil)
             }
             task.resume()
@@ -90,7 +95,5 @@ class DogAPI {
         
         
     }
-        
-    
     
 
