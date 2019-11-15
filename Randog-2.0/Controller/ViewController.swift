@@ -15,6 +15,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var pickerView: UIPickerView!
     
     var breeds: [String] = []
+    var capitalBreeds:[String] = []
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +43,20 @@ class ViewController: UIViewController {
     
     func handleBreedsListResponse(breeds: [String], error: Error?) {
         self.breeds = breeds
+        for breed in breeds {
+            let Breed = breed.capitalized
+            for x in breeds {
+                if x.contains("hound") {
+//                    if x == "hound" {
+//                        return
+//                    } else {
+//                        print(x)
+//                    }
+                    print(x)
+                }
+            }
+            capitalBreeds.append(Breed)
+        }
         DispatchQueue.main.async {
             self.pickerView.reloadAllComponents()
         }
@@ -63,7 +79,7 @@ extension ViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     
     // Returns a breed that will be displayed in the pickerView
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return breeds[row]
+        return capitalBreeds[row]
     }
     
     // When the pickerView stops spinning and a breed is selected we want it to call requesRandom Image to fetch an image
