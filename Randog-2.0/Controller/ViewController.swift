@@ -45,16 +45,6 @@ class ViewController: UIViewController {
         self.breeds = breeds
         for breed in breeds {
             let Breed = breed.capitalized
-            for x in breeds {
-                if x.contains("hound") {
-//                    if x == "hound" {
-//                        return
-//                    } else {
-//                        print(x)
-//                    }
-                    print(x)
-                }
-            }
             capitalBreeds.append(Breed)
         }
         DispatchQueue.main.async {
